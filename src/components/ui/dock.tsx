@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import {
   AnimatePresence,
   motion,
@@ -10,27 +11,29 @@ import {
   type MotionValue,
 } from "framer-motion";
 import {
-  BarChart3,
-  CircleHelp,
-  Columns2,
+  ClipboardCheck,
+  FileCheck2,
   Home,
-  Mail,
+  Newspaper,
   ShieldCheck,
   Tag,
+  UserRound,
   type LucideIcon,
 } from "lucide-react";
 import { EASE } from "@/lib/motion";
 
+const MotionLink = motion(Link);
+
 type DockLink = { label: string; href: string; icon: LucideIcon };
 
 const links: DockLink[] = [
-  { label: "Start", href: "#start", icon: Home },
-  { label: "Leistungen", href: "#leistungen", icon: ShieldCheck },
-  { label: "Vergleich", href: "#vergleich", icon: Columns2 },
-  { label: "Reporting", href: "#reporting", icon: BarChart3 },
-  { label: "Preise", href: "#preise", icon: Tag },
-  { label: "FAQ", href: "#faq", icon: CircleHelp },
-  { label: "Kontakt", href: "#kontakt", icon: Mail },
+  { label: "Start", href: "/", icon: Home },
+  { label: "Leistungen", href: "/leistungen", icon: ShieldCheck },
+  { label: "NIS2", href: "/nis2", icon: FileCheck2 },
+  { label: "Preise", href: "/preise", icon: Tag },
+  { label: "Blog", href: "/blog", icon: Newspaper },
+  { label: "Über", href: "/ueber", icon: UserRound },
+  { label: "Control-Check", href: "/control-check", icon: ClipboardCheck },
 ];
 
 function DockItem({ mouseX, link }: { mouseX: MotionValue<number>; link: DockLink }) {
@@ -47,7 +50,7 @@ function DockItem({ mouseX, link }: { mouseX: MotionValue<number>; link: DockLin
   const Icon = link.icon;
 
   return (
-    <motion.a
+    <MotionLink
       ref={ref}
       href={link.href}
       aria-label={link.label}
@@ -70,11 +73,11 @@ function DockItem({ mouseX, link }: { mouseX: MotionValue<number>; link: DockLin
         )}
       </AnimatePresence>
       <Icon className="h-5 w-5" />
-    </motion.a>
+    </MotionLink>
   );
 }
 
-/** Schwebendes Apple-Dock zur Sektions-Navigation (Desktop, 21st.dev apple-dock). */
+/** Schwebendes Apple-Dock als seitenweite Schnellnavigation (Desktop). */
 export function Dock() {
   const mouseX = useMotionValue(Infinity);
 

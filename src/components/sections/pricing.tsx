@@ -7,6 +7,7 @@ import { addons, enterpriseTiers, pricingTiers, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { FlipButton } from "@/components/ui/flip-button";
 import { Reveal } from "@/components/ui/reveal";
+import { SectionHeader } from "@/components/ui/section-header";
 
 const included = [
   "M365 & Azure Regelbetrieb mit Tenant-Health-Check",
@@ -20,20 +21,22 @@ const included = [
 const mailto = (subject: string) =>
   `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
 
-export function Pricing() {
+type PricingProps = {
+  /** Auf der Startseite Teil des roten Fadens (Kapitel 05) */
+  asChapter?: boolean;
+};
+
+export function Pricing({ asChapter = false }: PricingProps) {
   return (
-    <section id="preise" className="section relative">
+    <section id={asChapter ? "entscheidung" : "preise"} className="section relative">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="kicker">Preise</p>
-          <h2 className="mt-4 font-display text-4xl font-semibold text-ink md:text-5xl">
-            Planbar nach Unternehmensgröße
-          </h2>
-          <p className="mt-5 text-lg text-ink-soft">
-            Jede Stufe enthält dieselben neun Kernleistungen. Der Preis richtet sich
-            nur nach der Größe Ihrer Umgebung, nicht nach Kleingedrucktem.
-          </p>
-        </Reveal>
+        <SectionHeader
+          align="center"
+          chapter={asChapter ? { nr: "05", label: "Die Entscheidung" } : undefined}
+          kicker="Preise"
+          title="Planbar nach Unternehmensgröße"
+          lead="Jede Stufe enthält dieselben neun Kernleistungen. Der Preis richtet sich nur nach der Größe Ihrer Umgebung, nicht nach Kleingedrucktem."
+        />
 
         <motion.div
           variants={staggerContainer(0.12)}

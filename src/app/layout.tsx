@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/sections/navbar";
+import { Footer } from "@/components/sections/footer";
+import { Dock } from "@/components/ui/dock";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,7 +45,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${inter.variable} ${grotesk.variable} ${mono.variable}`}>
-      <body className="bg-void font-sans text-ink antialiased">{children}</body>
+      <body className="bg-void font-sans text-ink antialiased">
+        <Navbar />
+        {children}
+        <Footer />
+        <Dock />
+      </body>
     </html>
   );
 }

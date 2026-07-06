@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   AnimatePresence,
   motion,
@@ -17,6 +19,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
 
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24));
 
@@ -31,30 +34,47 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#start" className="flex items-center gap-2.5" aria-label="CloudOptima, zum Seitenanfang">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="CloudOptima, zur Startseite">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-azure to-azure-deep font-display text-base font-bold text-void">
             C
           </span>
           <span className="font-display text-lg font-semibold tracking-tight">
             Cloud<span className="text-azure-bright">Optima</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Hauptnavigation">
-          {site.nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="group relative text-sm text-ink-soft transition-colors hover:text-ink"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-azure transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
-          ))}
+          {site.nav.map((item) => {
+            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "group relative text-sm transition-colors hover:text-ink",
+                  active ? "text-ink" : "text-ink-soft"
+                )}
+              >
+                {item.label}
+                <span
+                  className={cn(
+                    "absolute -bottom-1 left-0 h-px w-full origin-left bg-azure transition-transform duration-300",
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  )}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden md:block">
-          <FlipButton front="Control-Check starten" back="15 Minuten, kostenlos" href="#kontakt" className="h-10 px-5" />
+          <FlipButton
+            front="Control-Check starten"
+            back="15 Minuten, kostenlos"
+            href={site.cta.href}
+            className="h-10 px-5"
+          />
         </div>
 
         <button
@@ -84,7 +104,7 @@ export function Navbar() {
               variants={{ visible: { transition: { staggerChildren: 0.06, delayChildren: 0.08 } } }}
               className="space-y-1 px-6 py-4"
             >
-              {[...site.nav, { label: "Kontakt", href: "#kontakt" }].map((item) => (
+              {[...site.nav, { label: "Control-Check", href: site.cta.href }].map((item) => (
                 <motion.li
                   key={item.href}
                   variants={{
@@ -92,13 +112,13 @@ export function Navbar() {
                     visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: EASE } },
                   }}
                 >
-                  <a
+                  <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="block rounded-lg px-3 py-2.5 font-display text-base text-ink transition-colors hover:bg-raised"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>

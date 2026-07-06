@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { staggerContainer, viewportOnce, EASE } from "@/lib/motion";
-import { ContainerScroll } from "@/components/ui/container-scroll";
 
 const bars = [32, 38, 35, 44, 48, 52, 58, 56, 63, 68, 72, 74];
 
@@ -14,7 +13,8 @@ const actions = [
   "Break-Glass-Account getestet",
 ];
 
-function DashboardMock() {
+/** Der Monatsreport als Dashboard, Herzstück des Hero-Container-Scrolls */
+export function DashboardMock() {
   return (
     <div className="bg-surface p-4 md:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
@@ -94,31 +94,5 @@ function DashboardMock() {
         </div>
       </div>
     </div>
-  );
-}
-
-export function Report() {
-  return (
-    <section id="reporting" className="section relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6">
-        <ContainerScroll
-          header={
-            <>
-              <p className="kicker">Reporting</p>
-              <h2 className="mt-4 font-display text-4xl font-semibold text-ink md:text-5xl">
-                Sie sehen jeden Monat, was Ihre IT macht
-              </h2>
-              <p className="mt-5 text-lg text-ink-soft">
-                Kein Blindflug und kein Vertrauensvorschuss. Der Monatsreport zeigt
-                Security-Status, Patch-Stand, Incidents und Kosten. Verständlich genug
-                für die Geschäftsführung, konkret genug fürs Audit.
-              </p>
-            </>
-          }
-        >
-          <DashboardMock />
-        </ContainerScroll>
-      </div>
-    </section>
   );
 }

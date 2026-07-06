@@ -2,9 +2,10 @@
 
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 type ContainerScrollProps = {
-  header: React.ReactNode;
+  header?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -26,12 +27,17 @@ export function ContainerScroll({ header, children }: ContainerScrollProps) {
 
   return (
     <div ref={ref} className="relative flex flex-col items-center" style={{ perspective: "1100px" }}>
-      <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mx-auto max-w-2xl text-center">
-        {header}
-      </motion.div>
+      {header && (
+        <motion.div style={{ y: headerY, opacity: headerOpacity }} className="mx-auto max-w-2xl text-center">
+          {header}
+        </motion.div>
+      )}
       <motion.div
         style={{ rotateX, scale, transformStyle: "preserve-3d" }}
-        className="mt-12 w-full max-w-5xl rounded-3xl border border-line bg-raised/70 p-2 shadow-card md:p-4"
+        className={cn(
+          "w-full max-w-5xl rounded-3xl border border-line bg-raised/70 p-2 shadow-card md:p-4",
+          header ? "mt-12" : "mt-14"
+        )}
       >
         <div className="overflow-hidden rounded-2xl border border-line bg-surface">{children}</div>
       </motion.div>

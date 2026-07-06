@@ -5,15 +5,16 @@ export const site = {
   /** Ende der BSI-Nachfrist für NIS2-Registrierung */
   nis2Deadline: "2026-07-31T23:59:59+02:00",
   nav: [
-    { label: "Leistungen", href: "#leistungen" },
-    { label: "Vergleich", href: "#vergleich" },
-    { label: "Preise", href: "#preise" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Leistungen", href: "/leistungen" },
+    { label: "NIS2", href: "/nis2" },
+    { label: "Preise", href: "/preise" },
+    { label: "Blog", href: "/blog" },
+    { label: "Über", href: "/ueber" },
   ],
   cta: {
     label: "Control-Check starten",
-    /** 15-Minuten Control-Check, aktuell per E-Mail-Erstkontakt */
-    href: "#kontakt",
+    /** 15-Minuten Control-Check als interaktiver Fragebogen */
+    href: "/control-check",
   },
 } as const;
 

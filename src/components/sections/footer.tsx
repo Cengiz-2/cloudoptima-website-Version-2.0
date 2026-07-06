@@ -1,29 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
 import { site } from "@/lib/site";
 import { TermsDialog } from "@/components/ui/terms-dialog";
+import { PartnerBadge } from "@/components/ui/partner-badge";
 
 const letters = "CloudOptima".split("");
-
-function LegalLink({ label, title, children }: { label: string; title: string; children: React.ReactNode }) {
-  return (
-    <TermsDialog
-      title={title}
-      trigger={
-        <button
-          type="button"
-          className="block text-sm text-ink-soft transition-colors hover:text-ink"
-        >
-          {label}
-        </button>
-      }
-    >
-      {children}
-    </TermsDialog>
-  );
-}
 
 /** Footer mit gestaffeltem Riesen-Schriftzug (21st.dev animated-footer) */
 export function Footer() {
@@ -32,25 +16,28 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-6 pt-16">
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <a href="#start" className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-azure to-azure-deep font-display text-base font-bold text-void">
                 C
               </span>
               <span className="font-display text-lg font-semibold tracking-tight text-ink">
                 Cloud<span className="text-azure-bright">Optima</span>
               </span>
-            </a>
+            </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
               Managed Services für Microsoft 365 und Azure. Betrieb, Security und
               NIS2-Nachweise aus einer Hand, für Unternehmen mit 10 bis 300
               Mitarbeitenden.
             </p>
-            <a
-              href={`mailto:${site.email}`}
-              className="mt-4 inline-block font-mono text-sm text-azure-bright underline-offset-4 hover:underline"
-            >
-              {site.email}
-            </a>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <PartnerBadge />
+              <a
+                href={`mailto:${site.email}`}
+                className="font-mono text-sm text-azure-bright underline-offset-4 hover:underline"
+              >
+                {site.email}
+              </a>
+            </div>
           </div>
 
           <nav aria-label="Footer-Navigation">
@@ -58,14 +45,14 @@ export function Footer() {
               Navigation
             </p>
             <ul className="mt-4 space-y-2.5">
-              {[...site.nav, { label: "Kontakt", href: "#kontakt" }].map((item) => (
+              {[...site.nav, { label: "Control-Check", href: site.cta.href }].map((item) => (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className="text-sm text-ink-soft transition-colors hover:text-ink"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -76,7 +63,29 @@ export function Footer() {
               Rechtliches
             </p>
             <div className="mt-4 space-y-2.5">
-              <LegalLink label="Leistungsbedingungen" title="Leistungsbedingungen (Kurzfassung)">
+              <Link
+                href="/impressum"
+                className="block text-sm text-ink-soft transition-colors hover:text-ink"
+              >
+                Impressum
+              </Link>
+              <Link
+                href="/datenschutz"
+                className="block text-sm text-ink-soft transition-colors hover:text-ink"
+              >
+                Datenschutz
+              </Link>
+              <TermsDialog
+                title="Leistungsbedingungen (Kurzfassung)"
+                trigger={
+                  <button
+                    type="button"
+                    className="block text-sm text-ink-soft transition-colors hover:text-ink"
+                  >
+                    Leistungsbedingungen
+                  </button>
+                }
+              >
                 <ul className="list-disc space-y-3 pl-5">
                   <li>
                     Mindestlaufzeit 6 Monate, danach monatlich kündbar. Abrechnung
@@ -105,26 +114,7 @@ export function Footer() {
                 <p className="mt-5 text-xs text-ink-mute">
                   Kurzfassung zur Orientierung. Maßgeblich ist der jeweilige Vertrag.
                 </p>
-              </LegalLink>
-              <LegalLink label="Impressum" title="Impressum">
-                <p>
-                  Das vollständige Impressum wird vor dem Launch von cloudoptima.de
-                  übernommen.
-                </p>
-                <p className="mt-3">
-                  CloudOptima · Cengiz Gümüşdere ·{" "}
-                  <a href={`mailto:${site.email}`} className="text-azure-bright">
-                    {site.email}
-                  </a>
-                </p>
-              </LegalLink>
-              <LegalLink label="Datenschutz" title="Datenschutzerklärung">
-                <p>
-                  Die vollständige Datenschutzerklärung wird vor dem Launch von
-                  cloudoptima.de übernommen. Diese Seite setzt keine Tracking-Cookies
-                  und lädt Schriften lokal über Next.js.
-                </p>
-              </LegalLink>
+              </TermsDialog>
             </div>
           </div>
         </div>
