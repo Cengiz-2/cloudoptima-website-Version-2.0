@@ -31,7 +31,7 @@ export function Cta() {
               transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
             />
             <div className="relative z-10">
-              <p className="kicker">Kapitel 06 · Der erste Schritt</p>
+              <p className="kicker">Kapitel 05 · Der erste Schritt</p>
               <h2 className="mx-auto mt-4 max-w-2xl text-balance font-display text-4xl font-semibold text-ink md:text-5xl">
                 In 15 Minuten wissen Sie, wo Sie stehen
               </h2>

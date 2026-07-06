@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/sections/navbar";
 import { Footer } from "@/components/sections/footer";
-import { Dock } from "@/components/ui/dock";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,7 +48,6 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        <Dock />
       </body>
     </html>
   );

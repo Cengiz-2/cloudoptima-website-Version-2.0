@@ -24,18 +24,13 @@ const mailto = (subject: string) =>
 /** Anfragen laufen über das Formspree-Formular auf /preise statt über die Mail-App */
 const formHref = "/preise#anfrage";
 
-type PricingProps = {
-  /** Auf der Startseite Teil des roten Fadens (Kapitel 05) */
-  asChapter?: boolean;
-};
-
-export function Pricing({ asChapter = false }: PricingProps) {
+/** Preis-Sektion, lebt nur auf /preise (auf der Startseite bewusst nicht dupliziert) */
+export function Pricing() {
   return (
-    <section id={asChapter ? "entscheidung" : "preise"} className="section relative">
+    <section id="preise" className="section relative">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
           align="center"
-          chapter={asChapter ? { nr: "05", label: "Die Entscheidung" } : undefined}
           kicker="Preise"
           title="Planbar nach Unternehmensgröße"
           lead="Jede Stufe enthält dieselben neun Kernleistungen. Der Preis richtet sich nur nach der Größe Ihrer Umgebung, nicht nach Kleingedrucktem."

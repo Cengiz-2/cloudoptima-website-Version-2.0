@@ -17,8 +17,7 @@ export const chapters = [
   { id: "betrieb", nr: "02", label: "Der Betrieb" },
   { id: "nachweis", nr: "03", label: "Der Nachweis" },
   { id: "weg", nr: "04", label: "Der Weg" },
-  { id: "entscheidung", nr: "05", label: "Die Entscheidung" },
-  { id: "kontakt", nr: "06", label: "Der erste Schritt" },
+  { id: "kontakt", nr: "05", label: "Der erste Schritt" },
 ] as const;
 
 export type Service = {
