@@ -32,9 +32,35 @@ export const metadata: Metadata = {
     title: "CloudOptima | Managed Services für Microsoft 365 & Azure",
     description:
       "Betrieb, Security und Compliance für M365 und Azure. Zum festen Monatspreis, mit festem Ansprechpartner.",
+    url: "https://cloudoptima.de",
+    siteName: "CloudOptima",
     locale: "de_DE",
     type: "website",
   },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "CloudOptima",
+  legalName: "CloudOptima",
+  url: "https://cloudoptima.de",
+  logo: "https://cloudoptima.de/logo.svg",
+  image: "https://cloudoptima.de/logo.svg",
+  email: "info@cloudoptima.de",
+  telephone: "+4915751773759",
+  founder: { "@type": "Person", name: "Cengiz Gümüşdere" },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Unter den Kastanien 15",
+    postalCode: "60596",
+    addressLocality: "Frankfurt am Main",
+    addressCountry: "DE",
+  },
+  vatID: "DE455328887",
+  areaServed: "DE",
+  description:
+    "Managed Services für Microsoft 365 und Azure: Betrieb, Security und Compliance zum festen Monatspreis.",
 };
 
 export default function RootLayout({
@@ -45,6 +71,10 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${inter.variable} ${grotesk.variable} ${mono.variable}`}>
       <body className="bg-void font-sans text-ink antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Navbar />
         {children}
         <Footer />
