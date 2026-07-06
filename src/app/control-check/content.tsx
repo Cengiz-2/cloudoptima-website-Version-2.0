@@ -2,7 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, RotateCcw, TriangleAlert } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CircleCheck,
+  Loader2,
+  RotateCcw,
+  TriangleAlert,
+} from "lucide-react";
 import { EASE } from "@/lib/motion";
 import { checkQuestions } from "@/lib/content";
 import { site } from "@/lib/site";
@@ -39,6 +46,7 @@ export function ControlCheckContent() {
     Array(checkQuestions.length).fill(null)
   );
   const [contact, setContact] = useState({ name: "", firma: "", email: "" });
+  const [sendStatus, setSendStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const total = checkQuestions.length;
   const q = checkQuestions[step];
@@ -58,22 +66,43 @@ export function ControlCheckContent() {
     (question, i) => answers[i] !== null && question.options[answers[i]!].points === 0
   );
 
-  const mailHref = useMemo(() => {
-    const lines = [
-      `Control-Check Ergebnis: ${score} von ${maxScore} Punkten (${zone.label})`,
-      "",
-      ...checkQuestions.map((question, i) => {
-        const a = answers[i];
-        return `${i + 1}. ${question.question}\n   Antwort: ${a === null ? "-" : question.options[a].label}`;
-      }),
-      "",
-      `Name: ${contact.name || "-"}`,
-      `Firma: ${contact.firma || "-"}`,
-      `E-Mail: ${contact.email || "-"}`,
-    ];
-    const subject = `Control-Check Ergebnis${contact.firma ? ` (${contact.firma})` : ""}`;
-    return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
-  }, [answers, contact, score, maxScore, zone.label]);
+  /** Ergebnis über Formspree (info@cloudoptima.de) senden, wie die Formulare der alten Website */
+  const submitResult = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (sendStatus === "sending") return;
+    setSendStatus("sending");
+    try {
+      const summary = checkQuestions
+        .map((question, i) => {
+          const a = answers[i];
+          return `${i + 1}. ${question.question}\n   Antwort: ${a === null ? "-" : question.options[a].label}`;
+        })
+        .join("\n");
+
+      const formData = new FormData();
+      formData.append("name", contact.name);
+      formData.append("firma", contact.firma);
+      formData.append("email", contact.email);
+      formData.append("ergebnis", `${score} von ${maxScore} Punkten (${zone.label})`);
+      formData.append("antworten", summary);
+      formData.append(
+        "_subject",
+        `Control-Check Ergebnis${contact.firma ? ` (${contact.firma})` : ""} • ${score}/${maxScore}`
+      );
+      formData.append("_gotcha", "");
+
+      const res = await fetch(site.formspreeEndpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error(`Formspree (${res.status})`);
+      setSendStatus("success");
+    } catch (error) {
+      console.error(error);
+      setSendStatus("error");
+    }
+  };
 
   const choose = (optionIndex: number) => {
     const next = [...answers];
@@ -88,6 +117,7 @@ export function ControlCheckContent() {
   const restart = () => {
     setAnswers(Array(total).fill(null));
     setStep(0);
+    setSendStatus("idle");
     setPhase("quiz");
   };
 
@@ -203,68 +233,121 @@ export function ControlCheckContent() {
               )}
 
               <div className="mt-8 border-t border-line pt-8">
-                <p className="font-display text-sm font-semibold text-ink">
-                  Ergebnis senden, Einschätzung in 48 Stunden erhalten:
-                </p>
-                <div className="mt-4 grid gap-4 md:grid-cols-2">
-                  <div>
-                    <label htmlFor="cc-name" className="mb-2 block text-sm text-ink-soft">
-                      Name
-                    </label>
-                    <input
-                      id="cc-name"
-                      type="text"
-                      autoComplete="name"
-                      value={contact.name}
-                      onChange={(e) => setContact({ ...contact, name: e.target.value })}
-                      className={inputCls}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="cc-firma" className="mb-2 block text-sm text-ink-soft">
-                      Firma
-                    </label>
-                    <input
-                      id="cc-firma"
-                      type="text"
-                      autoComplete="organization"
-                      value={contact.firma}
-                      onChange={(e) => setContact({ ...contact, firma: e.target.value })}
-                      className={inputCls}
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label htmlFor="cc-email" className="mb-2 block text-sm text-ink-soft">
-                      E-Mail für die Rückmeldung
-                    </label>
-                    <input
-                      id="cc-email"
-                      type="email"
-                      autoComplete="email"
-                      value={contact.email}
-                      onChange={(e) => setContact({ ...contact, email: e.target.value })}
-                      className={inputCls}
-                    />
-                  </div>
-                </div>
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <ParticleButton href={mailHref}>
-                    Ergebnis an CloudOptima senden
-                    <ArrowRight className="h-4 w-4" />
-                  </ParticleButton>
-                  <button
-                    type="button"
-                    onClick={restart}
-                    className="inline-flex items-center gap-1.5 text-sm text-ink-mute transition-colors hover:text-ink"
+                {sendStatus === "success" ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col items-center gap-4 py-6 text-center"
                   >
-                    <RotateCcw className="h-4 w-4" />
-                    Neu starten
-                  </button>
-                </div>
-                <p className="mt-4 text-xs text-ink-mute">
-                  Öffnet Ihre Mail-App mit dem Ergebnis als Text. Es wird nichts
-                  automatisch übertragen.
-                </p>
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full border border-mint/40 bg-mint/10">
+                      <CircleCheck className="h-7 w-7 text-mint" />
+                    </span>
+                    <p className="font-display text-xl font-semibold text-ink">
+                      Ergebnis gesendet
+                    </p>
+                    <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
+                      Danke{contact.name ? `, ${contact.name}` : ""}! Sie erhalten
+                      innerhalb von 48 Stunden eine ehrliche Einschätzung an{" "}
+                      {contact.email || "Ihre E-Mail-Adresse"}.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={restart}
+                      className="inline-flex items-center gap-1.5 text-sm text-ink-mute transition-colors hover:text-ink"
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                      Check neu starten
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={submitResult}>
+                    <p className="font-display text-sm font-semibold text-ink">
+                      Ergebnis senden, Einschätzung in 48 Stunden erhalten:
+                    </p>
+                    <div className="mt-4 grid gap-4 md:grid-cols-2">
+                      <div>
+                        <label htmlFor="cc-name" className="mb-2 block text-sm text-ink-soft">
+                          Name
+                        </label>
+                        <input
+                          id="cc-name"
+                          type="text"
+                          required
+                          autoComplete="name"
+                          value={contact.name}
+                          onChange={(e) => setContact({ ...contact, name: e.target.value })}
+                          className={inputCls}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="cc-firma" className="mb-2 block text-sm text-ink-soft">
+                          Firma
+                        </label>
+                        <input
+                          id="cc-firma"
+                          type="text"
+                          autoComplete="organization"
+                          value={contact.firma}
+                          onChange={(e) => setContact({ ...contact, firma: e.target.value })}
+                          className={inputCls}
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label htmlFor="cc-email" className="mb-2 block text-sm text-ink-soft">
+                          E-Mail für die Rückmeldung
+                        </label>
+                        <input
+                          id="cc-email"
+                          type="email"
+                          required
+                          autoComplete="email"
+                          value={contact.email}
+                          onChange={(e) => setContact({ ...contact, email: e.target.value })}
+                          className={inputCls}
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-6 flex flex-wrap items-center gap-4">
+                      <ParticleButton type="submit" disabled={sendStatus === "sending"}>
+                        {sendStatus === "sending" ? (
+                          <>
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            Wird gesendet …
+                          </>
+                        ) : (
+                          <>
+                            Ergebnis an CloudOptima senden
+                            <ArrowRight className="h-4 w-4" />
+                          </>
+                        )}
+                      </ParticleButton>
+                      <button
+                        type="button"
+                        onClick={restart}
+                        className="inline-flex items-center gap-1.5 text-sm text-ink-mute transition-colors hover:text-ink"
+                      >
+                        <RotateCcw className="h-4 w-4" />
+                        Neu starten
+                      </button>
+                    </div>
+                    {sendStatus === "error" && (
+                      <p className="mt-4 flex items-center gap-2 text-sm text-danger">
+                        <TriangleAlert className="h-4 w-4 shrink-0" />
+                        Senden fehlgeschlagen. Bitte erneut versuchen oder direkt an{" "}
+                        <a href={`mailto:${site.email}`} className="underline underline-offset-4">
+                          {site.email}
+                        </a>{" "}
+                        schreiben.
+                      </p>
+                    )}
+                    <p className="mt-4 text-xs text-ink-mute">
+                      Ihr Ergebnis geht direkt an {site.email}. Übertragen wird nur,
+                      was Sie hier sehen: Ihre Antworten, die Punktzahl und Ihre
+                      Kontaktdaten.
+                    </p>
+                  </form>
+                )}
               </div>
             </motion.div>
           )}

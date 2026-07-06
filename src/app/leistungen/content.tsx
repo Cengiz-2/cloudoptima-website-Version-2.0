@@ -38,11 +38,19 @@ export function LeistungenContent() {
           >
             {services.map((s, i) => {
               const Icon = s.icon;
+              const tone = (["azure", "mint", "amber"] as const)[i % 3];
+              const iconTone = {
+                azure: "border-azure/25 bg-azure/10 text-azure-bright",
+                mint: "border-mint/25 bg-mint/10 text-mint",
+                amber: "border-amber/25 bg-amber/10 text-amber",
+              }[tone];
               return (
                 <motion.div key={s.title} variants={fadeUp} className="h-full">
-                  <SpotlightCard className="h-full p-6">
+                  <SpotlightCard tone={tone} className="h-full p-6">
                     <div className="flex items-start justify-between">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-azure/25 bg-azure/10 text-azure-bright">
+                      <span
+                        className={`flex h-10 w-10 items-center justify-center rounded-xl border ${iconTone}`}
+                      >
                         <Icon className="h-5 w-5" />
                       </span>
                       <span className="font-mono text-xs text-ink-mute">
@@ -70,15 +78,17 @@ export function LeistungenContent() {
             <Reveal>
               <div className="h-full rounded-2xl border border-mint/25 bg-mint/5 p-7">
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-mint">
-                  Incident · im Preis enthalten
+                  Im Preis enthalten
                 </p>
                 <h3 className="mt-3 font-display text-xl font-semibold text-ink">
-                  „E-Mail geht nicht mehr“
+                  „E-Mail geht nicht mehr“ – und der ganz normale Alltag
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  Störung eines bestehenden Service. Wird über das Monitoring meist
-                  erkannt, bevor Sie es merken, und in den Servicezeiten behoben.
-                  Ohne Zusatzkosten, so oft es nötig ist.
+                  Störungen eines bestehenden Service behebt das Monitoring meist,
+                  bevor Sie sie merken. Auch der laufende Mitarbeiter-Ein- und
+                  Austritt (Joiner/Mover/Leaver) und die Lizenzverwaltung gehören
+                  zum Regelbetrieb. Ohne Zusatzkosten, so oft es nötig ist – und
+                  2 Managed Devices pro Kopf sind immer dabei.
                 </p>
               </div>
             </Reveal>
@@ -88,13 +98,13 @@ export function LeistungenContent() {
                   Request · 125 €/Std., min. 0,5 Std.
                 </p>
                 <h3 className="mt-3 font-display text-xl font-semibold text-ink">
-                  „Wir brauchen einen neuen Mitarbeiter-Account“
+                  „Wir übernehmen einen Standort mit 30 Leuten“
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  Neues oder Änderungen: User anlegen, Postfach umbauen, neue
-                  Freigabe-Struktur. Sie sehen jeden Request im Monatsreport,
-                  inklusive Aufwand. 2 Managed Devices pro Kopf sind übrigens
-                  immer inklusive.
+                  Alles, was über den Regelbetrieb hinausgeht: Bulk-Onboarding
+                  ganzer Teams, neue Freigabe-Strukturen, Migrationen und Projekte.
+                  Läuft nur nach Ihrer Freigabe (Work Order), und Sie sehen jeden
+                  Request im Monatsreport, inklusive Aufwand.
                 </p>
               </div>
             </Reveal>

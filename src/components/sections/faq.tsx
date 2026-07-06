@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "Was ist im Monatspreis enthalten und was nicht?",
-    a: "Enthalten sind alle neun Kernleistungen, von Regelbetrieb über Security bis Reporting, sowie die Behebung von Störungen (Incidents). Neues und Änderungen (Requests, etwa neue User anlegen) rechnen wir separat mit 125 €/Std. ab. Pro Mitarbeitendem sind zwei Geräte inklusive, typischerweise Laptop und Smartphone.",
+    a: "Enthalten sind alle neun Kernleistungen, von Regelbetrieb über Security bis Reporting, die Behebung von Störungen (Incidents) und die laufende Benutzerverwaltung – also auch der normale Mitarbeiter-Ein- und Austritt (Joiner/Mover/Leaver). Nur was darüber hinausgeht (Requests, etwa Bulk-Onboarding ganzer Teams, Migrationen oder neue Freigabe-Strukturen), rechnen wir separat mit 125 €/Std. ab. Pro Mitarbeitendem sind zwei Geräte inklusive, typischerweise Laptop und Smartphone.",
   },
   {
     q: "Wie schnell reagieren Sie bei Störungen?",

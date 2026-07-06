@@ -21,6 +21,9 @@ const included = [
 const mailto = (subject: string) =>
   `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
 
+/** Anfragen laufen über das Formspree-Formular auf /preise statt über die Mail-App */
+const formHref = "/preise#anfrage";
+
 type PricingProps = {
   /** Auf der Startseite Teil des roten Fadens (Kapitel 05) */
   asChapter?: boolean;
@@ -81,8 +84,8 @@ export function Pricing({ asChapter = false }: PricingProps) {
                 </ul>
                 <FlipButton
                   front={`${tier.name} anfragen`}
-                  back="Unverbindlich per E-Mail"
-                  href={mailto(`Anfrage Managed Service ${tier.name}`)}
+                  back="Unverbindlich, Antwort in 48 h"
+                  href={formHref}
                   className={cn("mt-7 w-full", tier.highlighted && "border-azure/40")}
                 />
               </div>
@@ -104,7 +107,7 @@ export function Pricing({ asChapter = false }: PricingProps) {
             <FlipButton
               front="Gespräch anfragen"
               back="Wir melden uns"
-              href={mailto("Anfrage Enterprise / Corporate")}
+              href={formHref}
             />
           </div>
         </Reveal>
@@ -151,8 +154,10 @@ export function Pricing({ asChapter = false }: PricingProps) {
         <Reveal delay={0.05}>
           <p className="mt-10 text-center text-xs leading-relaxed text-ink-mute">
             Alle Preise netto zzgl. MwSt., monatlich im Voraus. Mindestlaufzeit 6 Monate,
-            danach monatlich kündbar. Incidents sind im Preis enthalten, Requests rechnen
-            wir mit 125 €/Std. ab. 2 Managed Devices pro Mitarbeitendem inklusive.
+            danach monatlich kündbar. Incidents und die laufende Benutzerverwaltung
+            (Joiner/Mover/Leaver) sind im Preis enthalten, Requests wie Projekte oder
+            Bulk-Änderungen rechnen wir mit 125 €/Std. ab. 2 Managed Devices pro
+            Mitarbeitendem inklusive.
           </p>
         </Reveal>
       </div>

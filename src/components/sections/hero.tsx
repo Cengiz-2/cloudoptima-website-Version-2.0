@@ -6,7 +6,8 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 import { site } from "@/lib/site";
 import { ParticleButton } from "@/components/ui/particle-button";
 import { FlipButton } from "@/components/ui/flip-button";
-import { Sparkles, ProgressiveBlur } from "@/components/ui/sparkles";
+import { ProgressiveBlur } from "@/components/ui/sparkles";
+import { AetherFlow } from "@/components/ui/aether-flow";
 import { DeadlineChip } from "@/components/ui/countdown";
 import { PartnerBadge } from "@/components/ui/partner-badge";
 import { ContainerScroll } from "@/components/ui/container-scroll";
@@ -14,8 +15,8 @@ import { DashboardMock } from "@/components/ui/dashboard-mock";
 import { Hero3DLazy } from "@/components/ui/hero-3d-lazy";
 
 /**
- * Hero: Aether-Flow-Lichtflächen, Sparkles, 3D-Kern (Desktop) und der
- * Aceternity Container-Scroll, der den Monatsreport aufrichtet.
+ * Hero: Aether-Flow-Partikelnetz (21st.dev), Lichtflächen, 3D-Kern (Desktop)
+ * und der Aceternity Container-Scroll, der den Monatsreport aufrichtet.
  */
 export function Hero() {
   return (
@@ -37,9 +38,7 @@ export function Hero() {
           animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div className="absolute inset-0">
-          <Sparkles density={90} />
-        </div>
+        <AetherFlow />
       </div>
 
       <Hero3DLazy className="pointer-events-none absolute left-1/2 top-4 z-[1] h-[540px] w-[640px] -translate-x-1/2 opacity-60" />
@@ -60,7 +59,7 @@ export function Hero() {
           className="mt-8 text-balance font-display text-5xl font-semibold text-ink md:text-7xl"
         >
           Ihre Microsoft-Umgebung.{" "}
-          <span className="bg-gradient-to-r from-azure-bright via-azure to-azure-bright bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-azure-bright via-azure to-mint bg-clip-text text-transparent">
             Sicher betrieben, sauber nachgewiesen.
           </span>
         </motion.h1>

@@ -12,6 +12,7 @@ import { Reveal } from "@/components/ui/reveal";
 type Feature = {
   index: string;
   icon: LucideIcon;
+  tone: "azure" | "mint" | "amber";
   title: string;
   text: string;
   points: string[];
@@ -21,6 +22,7 @@ const features: Feature[] = [
   {
     index: "01",
     icon: ShieldCheck,
+    tone: "mint",
     title: "Security & NIS2",
     text: "Ihre Umgebung wird gehärtet und bleibt es. Dazu bekommen Sie die Nachweise, die Auditoren und Auftraggeber sehen wollen.",
     points: [
@@ -32,6 +34,7 @@ const features: Feature[] = [
   {
     index: "02",
     icon: MonitorCog,
+    tone: "azure",
     title: "Regelbetrieb & Monitoring",
     text: "Wir halten M365 und Azure am Laufen, bevor Sie Probleme bemerken. Störungen erzeugen automatisch ein Ticket bei uns, nicht bei Ihnen.",
     points: [
@@ -43,6 +46,7 @@ const features: Feature[] = [
   {
     index: "03",
     icon: LineChart,
+    tone: "amber",
     title: "Kosten & Reporting",
     text: "Sie sehen jeden Monat, was Ihre IT kostet, was sie leistet und wo Geld versickert. Lizenzleichen fliegen raus.",
     points: [
@@ -85,12 +89,19 @@ export function Features() {
         >
           {features.map((f) => {
             const Icon = f.icon;
+            const iconTone = {
+              azure: "border-azure/25 bg-azure/10 text-azure-bright",
+              mint: "border-mint/25 bg-mint/10 text-mint",
+              amber: "border-amber/25 bg-amber/10 text-amber",
+            }[f.tone];
             return (
               <motion.div key={f.index} variants={fadeUp} className="h-full">
                 <Tilt className="h-full">
-                  <SpotlightCard className="h-full p-7">
+                  <SpotlightCard tone={f.tone} className="h-full p-7">
                     <div className="flex items-start justify-between">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-azure/25 bg-azure/10 text-azure-bright">
+                      <span
+                        className={`flex h-11 w-11 items-center justify-center rounded-xl border ${iconTone}`}
+                      >
                         <Icon className="h-5 w-5" />
                       </span>
                       <span className="font-mono text-xs text-ink-mute">{f.index}</span>

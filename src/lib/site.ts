@@ -1,7 +1,17 @@
 export const site = {
   name: "CloudOptima",
   domain: "cloudoptima.de",
-  email: "cengiz.guemuesdere@cloudoptima.de",
+  email: "info@cloudoptima.de",
+  emailPrivacy: "datenschutz@cloudoptima.de",
+  phone: "+49 (0) 157 517 73759",
+  address: {
+    street: "Unter den Kastanien 15",
+    city: "60596 Frankfurt am Main",
+  },
+  vatId: "DE455328887",
+  owner: "Cengiz Gümüşdere",
+  /** Formspree-Formular (verknüpft mit info@cloudoptima.de), gleiches wie auf der alten Website */
+  formspreeEndpoint: "https://formspree.io/f/xbdyeyvd",
   /** Ende der BSI-Nachfrist für NIS2-Registrierung */
   nis2Deadline: "2026-07-31T23:59:59+02:00",
   nav: [

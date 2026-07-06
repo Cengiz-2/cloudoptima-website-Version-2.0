@@ -17,6 +17,9 @@ let particleId = 0;
 type ParticleButtonProps = {
   href?: string;
   onClick?: () => void;
+  /** "submit" macht den Button zum Formular-Submit (Formspree-Formulare) */
+  type?: "button" | "submit";
+  disabled?: boolean;
   className?: string;
   children: React.ReactNode;
 };
@@ -25,7 +28,14 @@ type ParticleButtonProps = {
  * Primärer CTA: feuert beim Klick einen Partikel-Burst ab.
  * Nach 21st.dev particle-button, umgesetzt mit Framer Motion und Design-Tokens.
  */
-export function ParticleButton({ href, onClick, className, children }: ParticleButtonProps) {
+export function ParticleButton({
+  href,
+  onClick,
+  type = "button",
+  disabled = false,
+  className,
+  children,
+}: ParticleButtonProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const reduce = useReducedMotion();
 
@@ -50,18 +60,20 @@ export function ParticleButton({ href, onClick, className, children }: ParticleB
   return (
     <span className="relative inline-block">
       <Tag
-        {...(href ? ({ href } as object) : { type: "button" as const })}
+        {...(href ? ({ href } as object) : { type, disabled })}
         onClick={() => {
+          if (disabled) return;
           burst();
           onClick?.();
         }}
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.96 }}
+        whileHover={disabled ? undefined : { scale: 1.03 }}
+        whileTap={disabled ? undefined : { scale: 0.96 }}
         transition={{ type: "spring", stiffness: 400, damping: 22 }}
         className={cn(
           "relative z-10 inline-flex cursor-pointer items-center gap-2 rounded-full bg-azure px-7 py-3.5",
           "font-display text-base font-medium text-void",
           "shadow-glow-sm transition-shadow duration-300 hover:shadow-glow",
+          disabled && "cursor-wait opacity-70",
           className
         )}
       >

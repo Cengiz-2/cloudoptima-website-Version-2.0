@@ -34,6 +34,10 @@ export function Proof() {
         aria-hidden
         className="absolute left-1/2 top-1/3 h-96 w-[700px] -translate-x-1/2 rounded-full bg-azure/10 blur-[130px]"
       />
+      <div
+        aria-hidden
+        className="absolute right-[5%] top-2/3 h-72 w-72 rounded-full bg-mint/10 blur-[110px]"
+      />
       <div className="relative mx-auto max-w-7xl px-6">
         <SectionHeader
           chapter={chapters[2]}
@@ -83,7 +87,7 @@ export function Proof() {
               {stats.map((s) => (
                 <motion.div key={s.label} variants={fadeUp}>
                   <dt className="sr-only">{s.label}</dt>
-                  <dd className="font-display text-4xl font-semibold tabular-nums text-ink">
+                  <dd className="bg-gradient-to-r from-azure-bright to-mint bg-clip-text font-display text-4xl font-semibold tabular-nums text-transparent">
                     {s.value}
                   </dd>
                   <dd className="mt-2 text-sm text-ink-soft">{s.label}</dd>

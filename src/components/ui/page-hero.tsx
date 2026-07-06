@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "@/lib/motion";
+import { AetherFlow } from "@/components/ui/aether-flow";
 
 type PageHeroProps = {
   kicker: string;
@@ -21,6 +22,12 @@ export function PageHero({ kicker, title, lead, children }: PageHeroProps) {
           animate={{ opacity: [0.5, 0.85, 0.5] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
+        <motion.div
+          className="absolute right-[10%] top-24 h-48 w-48 rounded-full bg-amber/10 blur-[90px]"
+          animate={{ x: [0, -30, 0], y: [0, 25, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <AetherFlow density={16000} />
       </div>
       <motion.div
         variants={staggerContainer(0.1, 0.1)}

@@ -3,20 +3,34 @@
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+export type GlowTone = "azure" | "mint" | "amber";
+
+const toneVar: Record<GlowTone, string> = {
+  azure: "var(--azure)",
+  mint: "var(--mint)",
+  amber: "var(--amber)",
+};
+
 type SpotlightCardProps = {
   className?: string;
+  /** Farbe von Spotlight und Glow-Rand, Standard azure */
+  tone?: GlowTone;
   children: React.ReactNode;
 };
 
 /**
- * Card mit Maus-folgendem Spotlight. Nach 21st.dev spotlight-card,
- * Farbe über --azure Token statt fixem Hex.
+ * GlowCard nach 21st.dev spotlight-card: Maus-folgender Spotlight im
+ * Kartenkörper plus leuchtender Rand, der dem Cursor folgt. Der Rand
+ * entsteht über eine Gradient-Fläche, die per Mask auf einen 1px-Ring
+ * beschnitten wird. Farben über Tokens (azure/mint/amber).
  */
-export function SpotlightCard({ className, children }: SpotlightCardProps) {
+export function GlowCard({ className, tone = "azure", children }: SpotlightCardProps) {
   const mx = useMotionValue(-300);
   const my = useMotionValue(-300);
+  const rgb = toneVar[tone];
 
-  const spotlight = useMotionTemplate`radial-gradient(320px circle at ${mx}px ${my}px, rgb(var(--azure) / 0.13), transparent 70%)`;
+  const spotlight = useMotionTemplate`radial-gradient(320px circle at ${mx}px ${my}px, rgb(${rgb} / 0.13), transparent 70%)`;
+  const borderGlow = useMotionTemplate`radial-gradient(220px circle at ${mx}px ${my}px, rgb(${rgb} / 0.65), transparent 75%)`;
 
   return (
     <div
@@ -31,7 +45,7 @@ export function SpotlightCard({ className, children }: SpotlightCardProps) {
       }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border border-line bg-surface/70 shadow-card",
-        "transition-colors duration-300 hover:border-azure/30",
+        "transition-colors duration-300",
         className
       )}
     >
@@ -40,7 +54,21 @@ export function SpotlightCard({ className, children }: SpotlightCardProps) {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{ background: spotlight }}
       />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: borderGlow,
+          padding: 1,
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+        }}
+      />
       <div className="relative z-10 h-full">{children}</div>
     </div>
   );
 }
+
+/** Bisheriger Name, damit bestehende Verwendungen weiterlaufen */
+export { GlowCard as SpotlightCard };

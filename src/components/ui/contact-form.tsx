@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, CircleCheck, Loader2, TriangleAlert } from "lucide-react";
 import { site } from "@/lib/site";
 import { ParticleButton } from "@/components/ui/particle-button";
 
@@ -10,30 +11,70 @@ const sizes = ["10 bis 25", "26 bis 60", "61 bis 120", "121 bis 200", "201 bis 3
 const inputCls =
   "w-full rounded-xl border border-line bg-raised/60 px-4 py-3 text-sm text-ink placeholder:text-ink-mute transition-colors focus:border-azure/50 focus:outline-none";
 
+type Status = "idle" | "sending" | "success" | "error";
+
 /**
- * Anfrageformular ohne Backend: baut aus den Feldern eine vorausgefüllte
- * E-Mail und öffnet den Mail-Client des Besuchers.
+ * Anfrageformular über Formspree (verknüpft mit info@cloudoptima.de),
+ * gleicher Endpoint wie auf der alten Website. Formspree erwartet FormData
+ * mit Accept: application/json; _gotcha ist der Spam-Honeypot.
  */
 export function ContactForm() {
   const [name, setName] = useState("");
   const [firma, setFirma] = useState("");
+  const [email, setEmail] = useState("");
   const [size, setSize] = useState(sizes[1]);
   const [msg, setMsg] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
-  const href = useMemo(() => {
-    const subject = `Anfrage Managed Service${firma ? ` (${firma})` : ""}`;
-    const body = [
-      `Name: ${name || "-"}`,
-      `Firma: ${firma || "-"}`,
-      `Mitarbeitende: ${size}`,
-      "",
-      msg || "Bitte melden Sie sich für ein Erstgespräch.",
-    ].join("\n");
-    return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [name, firma, size, msg]);
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("firma", firma);
+      formData.append("email", email);
+      formData.append("mitarbeitende", size);
+      formData.append("nachricht", msg || "Bitte melden Sie sich für ein Erstgespräch.");
+      formData.append("_subject", `Neue Website-Anfrage (CloudOptima)${firma ? ` • ${firma}` : ""} • ${size} MA`);
+      formData.append("_gotcha", "");
+
+      const res = await fetch(site.formspreeEndpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error(`Formspree (${res.status})`);
+      setStatus("success");
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4 }}
+        className="flex flex-col items-center gap-4 py-10 text-center"
+      >
+        <span className="flex h-14 w-14 items-center justify-center rounded-full border border-mint/40 bg-mint/10">
+          <CircleCheck className="h-7 w-7 text-mint" />
+        </span>
+        <p className="font-display text-xl font-semibold text-ink">Anfrage gesendet</p>
+        <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
+          Danke{name ? `, ${name}` : ""}! Ihre Anfrage ist bei uns eingegangen.
+          Sie erhalten innerhalb von 48 Stunden eine Antwort an {email || "Ihre E-Mail-Adresse"}.
+        </p>
+      </motion.div>
+    );
+  }
 
   return (
-    <form className="grid gap-5 md:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+    <form className="grid gap-5 md:grid-cols-2" onSubmit={onSubmit}>
       <div>
         <label htmlFor="cf-name" className="mb-2 block text-sm text-ink-soft">
           Ihr Name
@@ -41,6 +82,7 @@ export function ContactForm() {
         <input
           id="cf-name"
           type="text"
+          required
           autoComplete="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -62,7 +104,22 @@ export function ContactForm() {
           className={inputCls}
         />
       </div>
-      <div className="md:col-span-2">
+      <div>
+        <label htmlFor="cf-email" className="mb-2 block text-sm text-ink-soft">
+          E-Mail für die Rückmeldung
+        </label>
+        <input
+          id="cf-email"
+          type="email"
+          required
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="name@firma.de"
+          className={inputCls}
+        />
+      </div>
+      <div>
         <label htmlFor="cf-size" className="mb-2 block text-sm text-ink-soft">
           Mitarbeitende
         </label>
@@ -93,16 +150,35 @@ export function ContactForm() {
         />
       </div>
       <div className="flex flex-wrap items-center gap-4 md:col-span-2">
-        <ParticleButton href={href}>
-          Anfrage senden
-          <ArrowRight className="h-4 w-4" />
+        <ParticleButton type="submit" disabled={status === "sending"}>
+          {status === "sending" ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Wird gesendet …
+            </>
+          ) : (
+            <>
+              Anfrage senden
+              <ArrowRight className="h-4 w-4" />
+            </>
+          )}
         </ParticleButton>
         <p className="text-xs leading-relaxed text-ink-mute">
-          Öffnet Ihre Mail-App mit vorausgefüllter Nachricht.
+          Geht direkt an {site.email}.
           <br />
           Antwort innerhalb von 48 Stunden.
         </p>
       </div>
+      {status === "error" && (
+        <p className="flex items-center gap-2 text-sm text-danger md:col-span-2">
+          <TriangleAlert className="h-4 w-4 shrink-0" />
+          Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie direkt an{" "}
+          <a href={`mailto:${site.email}`} className="underline underline-offset-4">
+            {site.email}
+          </a>
+          .
+        </p>
+      )}
     </form>
   );
 }

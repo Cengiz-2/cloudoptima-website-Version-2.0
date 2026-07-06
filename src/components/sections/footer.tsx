@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
 import { site } from "@/lib/site";
-import { TermsDialog } from "@/components/ui/terms-dialog";
 import { PartnerBadge } from "@/components/ui/partner-badge";
 
 const letters = "CloudOptima".split("");
@@ -75,46 +74,12 @@ export function Footer() {
               >
                 Datenschutz
               </Link>
-              <TermsDialog
-                title="Leistungsbedingungen (Kurzfassung)"
-                trigger={
-                  <button
-                    type="button"
-                    className="block text-sm text-ink-soft transition-colors hover:text-ink"
-                  >
-                    Leistungsbedingungen
-                  </button>
-                }
+              <Link
+                href="/leistungen"
+                className="block text-sm text-ink-soft transition-colors hover:text-ink"
               >
-                <ul className="list-disc space-y-3 pl-5">
-                  <li>
-                    Mindestlaufzeit 6 Monate, danach monatlich kündbar. Abrechnung
-                    monatlich im Voraus, alle Preise netto zzgl. MwSt.
-                  </li>
-                  <li>
-                    Incidents (Störung eines bestehenden Service) sind im Pauschalpreis
-                    enthalten. Requests (Neues oder Änderungen) rechnen wir mit
-                    125 €/Std. ab, mindestens 0,5 Std.
-                  </li>
-                  <li>
-                    2 Managed Devices pro Mitarbeitendem inklusive, jedes weitere Gerät
-                    6 €/Monat.
-                  </li>
-                  <li>
-                    Servicezeiten Montag bis Freitag, 9 bis 17 Uhr. Das Monitoring läuft
-                    rund um die Uhr automatisiert. 24/7-Rufbereitschaft für P1 gibt es
-                    als Add-on.
-                  </li>
-                  <li>
-                    Nicht enthalten: Endanwender-Helpdesk, Hardware-Reparatur vor Ort,
-                    Schulungen sowie Projekte und Migrationen. Alles davon ist separat
-                    buchbar.
-                  </li>
-                </ul>
-                <p className="mt-5 text-xs text-ink-mute">
-                  Kurzfassung zur Orientierung. Maßgeblich ist der jeweilige Vertrag.
-                </p>
-              </TermsDialog>
+                Leistungsbedingungen
+              </Link>
             </div>
           </div>
         </div>
