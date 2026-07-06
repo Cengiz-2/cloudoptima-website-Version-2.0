@@ -1,0 +1,11 @@
+# Weiterleitungen von den alten URLs (Vite-SPA) auf die neuen Routen,
+# damit bestehende Links und Suchmaschinen-Treffer nicht ins Leere laufen.
+/nis2-compliance      /nis2        301
+/nis2-zulieferer      /nis2        301
+/kontakt              /preise      301
+/ueber-mich           /ueber       301
+/prozess              /            301
+/copilot              /leistungen  301
+/BackupRestore        /leistungen  301
+/PurviewGovernance    /leistungen  301
+/OnCall               /leistungen  301
