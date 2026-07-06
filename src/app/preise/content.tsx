@@ -4,10 +4,17 @@ import { Pricing } from "@/components/sections/pricing";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Reveal } from "@/components/ui/reveal";
 import { ContactForm } from "@/components/ui/contact-form";
+import { PageHero } from "@/components/ui/page-hero";
 
 export function PreiseContent() {
   return (
-    <main className="pt-14">
+    <main>
+      <PageHero
+        kicker="Preise"
+        title="Was es kostet, sehen Sie hier. Nicht erst im Verkaufsgespräch."
+        lead="Ein fester Monatspreis nach Unternehmensgröße, jede Stufe mit denselben neun Kernleistungen. Kein Sternchen, keine versteckte Staffel. Was drinsteht, lesen Sie, bevor Sie mit uns sprechen."
+      />
+
       <Pricing />
 
       <section id="anfrage" className="section pt-0">

@@ -27,11 +27,11 @@ const formHref = "/preise#anfrage";
 /** Preis-Sektion, lebt nur auf /preise (auf der Startseite bewusst nicht dupliziert) */
 export function Pricing() {
   return (
-    <section id="preise" className="section relative">
+    <section id="preise" className="section relative pt-8">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
           align="center"
-          kicker="Preise"
+          kicker="Pakete"
           title="Planbar nach Unternehmensgröße"
           lead="Jede Stufe enthält dieselben neun Kernleistungen. Der Preis richtet sich nur nach der Größe Ihrer Umgebung, nicht nach Kleingedrucktem."
         />
