@@ -6,7 +6,9 @@
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="128" fill="url(#co)"/>
-  <text x="256" y="268" text-anchor="middle" dominant-baseline="central"
+  <!-- Grundlinie fest auf 363: Boxmitte 256 + halbe Versalhoehe (~107 bei size 300).
+       Kein dominant-baseline, damit jeder Renderer (auch Favicon-Rasterizer) gleich zentriert. -->
+  <text x="256" y="363" text-anchor="middle"
         font-family="'Space Grotesk','Segoe UI',Arial,sans-serif"
-        font-size="340" font-weight="700" fill="#060910">C</text>
+        font-size="300" font-weight="700" fill="#060910">C</text>
 </svg>
