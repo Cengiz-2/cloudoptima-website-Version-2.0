@@ -2,26 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Farb-Tokens als RGB-Tripel, damit Tailwind-Opacity (z.B. bg-azure/20) funktioniert */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --void: 6 9 16;
+  --surface: 11 16 28;
+  --raised: 17 24 42;
+  --ink: 234 240 250;
+  --ink-soft: 159 176 199;
+  --ink-mute: 100 116 139;
+  --azure: 63 161 255;
+  --azure-bright: 124 192 255;
+  --azure-deep: 20 74 132;
+  --amber: 255 180 84;
+  --mint: 74 222 156;
+  --danger: 248 113 113;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(var(--void));
+  color: rgb(var(--ink));
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: rgb(var(--azure) / 0.35);
+  color: rgb(var(--ink));
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--ink-mute) / 0.4) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--azure));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .animate-float,
+  .animate-pulse-dot {
+    animation: none;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .section {
+    @apply py-24 md:py-32 scroll-mt-16;
+  }
+  .glass {
+    @apply border border-line bg-surface/60 backdrop-blur-md;
+  }
+  .grid-bg {
+    background-image: linear-gradient(rgb(var(--ink-soft) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--ink-soft) / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .noise {
+    position: relative;
+  }
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .text-gradient {
+    @apply bg-gradient-to-br from-ink via-ink to-ink-soft bg-clip-text text-transparent;
+  }
+  .kicker {
+    @apply font-mono text-xs uppercase tracking-[0.22em] text-azure;
   }
 }
