@@ -10,8 +10,8 @@ export const site = {
   },
   vatId: "DE455328887",
   owner: "Cengiz Gümüşdere",
-  /** Formspree-Formular (verknüpft mit info@cloudoptima.de), gleiches wie auf der alten Website */
-  formspreeEndpoint: "https://formspree.io/f/xbdyeyvd",
+  /** Formspree-Formular, verknüpft mit info@cloudoptima.de (eigener Endpoint der neuen Website) */
+  formspreeEndpoint: "https://formspree.io/f/xkolezpg",
   /** Ende der BSI-Nachfrist für NIS2-Registrierung */
   nis2Deadline: "2026-07-31T23:59:59+02:00",
   nav: [
