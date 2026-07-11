@@ -52,14 +52,16 @@ export const metadata: Metadata = {
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
+  "@id": "https://cloudoptima.de/#organization",
   name: "CloudOptima",
   legalName: "CloudOptima",
   url: "https://cloudoptima.de",
   logo: "https://cloudoptima.de/logo.svg",
-  image: "https://cloudoptima.de/logo.svg",
+  image: "https://cloudoptima.de/og.jpg",
   email: "info@cloudoptima.de",
   telephone: "+4915751773759",
+  priceRange: "€€€",
   founder: { "@type": "Person", name: "Cengiz Gümüşdere" },
   address: {
     "@type": "PostalAddress",
@@ -69,7 +71,24 @@ const organizationJsonLd = {
     addressCountry: "DE",
   },
   vatID: "DE455328887",
-  areaServed: "DE",
+  areaServed: { "@type": "Country", name: "Deutschland" },
+  knowsAbout: [
+    "Microsoft 365",
+    "Microsoft Azure",
+    "Managed Services",
+    "IT-Security",
+    "NIS2-Compliance",
+    "Microsoft Purview",
+    "Microsoft Intune",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    telephone: "+4915751773759",
+    email: "info@cloudoptima.de",
+    areaServed: "DE",
+    availableLanguage: ["German"],
+  },
   description:
     "Managed Services für Microsoft 365 und Azure: Betrieb, Security und Compliance zum festen Monatspreis.",
 };
