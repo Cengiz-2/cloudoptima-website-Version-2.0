@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LeistungenContent } from "./content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/leistungen" },
   title: "Leistungen | CloudOptima",
   description:
     "Die neun Kernleistungen des Core Managed Service für Microsoft 365 & Azure, das Abrechnungsmodell und alle Add-ons im Detail.",

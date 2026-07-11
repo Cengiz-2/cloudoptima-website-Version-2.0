@@ -3,6 +3,8 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung | CloudOptima",
+  description: "Datenschutzerklärung von CloudOptima: welche Daten wir verarbeiten und Ihre Rechte nach DSGVO.",
+  alternates: { canonical: "/datenschutz" },
 };
 
 export default function DatenschutzPage() {

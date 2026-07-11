@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { blogPosts } from "@/lib/content";
+import { site } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -16,6 +17,14 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: `${post.title} | CloudOptima Blog`,
     description: post.description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      type: "article",
+      publishedTime: post.date,
+      title: post.title,
+      description: post.description,
+      url: `https://cloudoptima.de/blog/${post.slug}`,
+    },
   };
 }
 
@@ -31,8 +40,43 @@ export default function BlogArticlePage({ params }: Props) {
   const post = blogPosts.find((p) => p.slug === params.slug);
   if (!post) notFound();
 
+  const url = `https://cloudoptima.de/blog/${post.slug}`;
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: "de-DE",
+    author: { "@type": "Person", name: site.owner },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      logo: { "@type": "ImageObject", url: "https://cloudoptima.de/logo.svg" },
+    },
+    mainEntityOfPage: url,
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Start", item: "https://cloudoptima.de/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://cloudoptima.de/blog" },
+      { "@type": "ListItem", position: 3, name: post.title, item: url },
+    ],
+  };
+
   return (
     <main className="relative overflow-hidden pb-24 pt-36 md:pt-44">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <div
         aria-hidden
         className="grid-bg absolute inset-x-0 top-0 h-96 [mask-image:radial-gradient(ellipse_70%_80%_at_50%_0%,black,transparent)]"

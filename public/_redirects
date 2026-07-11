@@ -9,3 +9,8 @@
 /BackupRestore        /leistungen  301
 /PurviewGovernance    /leistungen  301
 /OnCall               /leistungen  301
+
+# .html-Duplikate auf saubere URLs umleiten (statischer Export legt z.B. preise.html an).
+# ! erzwingt den Redirect, obwohl die .html-Datei physisch existiert.
+/index.html           /            301!
+/*.html               /:splat      301!

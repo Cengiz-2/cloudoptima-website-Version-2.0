@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { Problem } from "@/components/sections/problem";
 import { Features } from "@/components/sections/features";
@@ -13,6 +14,10 @@ import { ThreadRail } from "@/components/ui/thread-rail";
  * Ausgangslage → Betrieb → Nachweis → Weg → Erster Schritt.
  * Preise leben bewusst nur auf /preise, um Dopplung zu vermeiden.
  */
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <main>

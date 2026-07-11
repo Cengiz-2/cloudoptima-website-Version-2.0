@@ -3,6 +3,8 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Impressum | CloudOptima",
+  description: "Impressum von CloudOptima: Anbieter, Kontakt und Umsatzsteuer-ID gemäß § 5 DDG.",
+  alternates: { canonical: "/impressum" },
 };
 
 export default function ImpressumPage() {
