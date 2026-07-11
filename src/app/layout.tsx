@@ -36,6 +36,21 @@ export const metadata: Metadata = {
     siteName: "CloudOptima",
     locale: "de_DE",
     type: "website",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "CloudOptima – Managed Services für Microsoft 365 & Azure",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CloudOptima | Managed Services für Microsoft 365 & Azure",
+    description:
+      "Betrieb, Security und Compliance für M365 und Azure. Zum festen Monatspreis, mit festem Ansprechpartner.",
+    images: ["/og.jpg"],
   },
 };
 
