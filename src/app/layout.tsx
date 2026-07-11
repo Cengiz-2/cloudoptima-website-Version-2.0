@@ -28,11 +28,10 @@ export const metadata: Metadata = {
   title: "CloudOptima | Managed Services für Microsoft 365 & Azure",
   description:
     "CloudOptima betreibt, sichert und dokumentiert Ihre Microsoft-Umgebung. Fester Monatspreis, fester Ansprechpartner, NIS2 im Blick.",
+  // Kein og/twitter title+description hier: Next füllt sie pro Seite aus dem
+  // jeweiligen title/description, damit geteilte Unterseiten ihren eigenen
+  // Titel zeigen statt des generischen Startseiten-Titels.
   openGraph: {
-    title: "CloudOptima | Managed Services für Microsoft 365 & Azure",
-    description:
-      "Betrieb, Security und Compliance für M365 und Azure. Zum festen Monatspreis, mit festem Ansprechpartner.",
-    url: "https://cloudoptima.de",
     siteName: "CloudOptima",
     locale: "de_DE",
     type: "website",
@@ -47,9 +46,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CloudOptima | Managed Services für Microsoft 365 & Azure",
-    description:
-      "Betrieb, Security und Compliance für M365 und Azure. Zum festen Monatspreis, mit festem Ansprechpartner.",
     images: ["/og.jpg"],
   },
 };
