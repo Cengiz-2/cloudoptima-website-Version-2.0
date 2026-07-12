@@ -115,7 +115,7 @@ export function Proof() {
             meine eigene. Und Sie wissen jeden Monat schwarz auf weiß, was passiert ist.“
           </blockquote>
           <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-ink-mute">
-            Cengiz Gümüşdere, Gründer CloudOptima
+            Cengiz Gümüsdere, Gründer CloudOptima
           </p>
         </Reveal>
       </div>

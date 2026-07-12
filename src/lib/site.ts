@@ -9,7 +9,7 @@ export const site = {
     city: "60596 Frankfurt am Main",
   },
   vatId: "DE455328887",
-  owner: "Cengiz Gümüşdere",
+  owner: "Cengiz Gümüsdere",
   /** Formspree-Formular, verknüpft mit info@cloudoptima.de (eigener Endpoint der neuen Website) */
   formspreeEndpoint: "https://formspree.io/f/xkolezpg",
   /** Ende der BSI-Nachfrist für NIS2-Registrierung */

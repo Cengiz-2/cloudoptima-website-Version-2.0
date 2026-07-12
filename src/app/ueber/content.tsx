@@ -52,7 +52,7 @@ export function UeberContent() {
             <Reveal>
               <div className="space-y-5 text-ink-soft">
                 <p>
-                  Hinter CloudOptima steht Cengiz Gümüşdere, ausgebildeter Kaufmann
+                  Hinter CloudOptima steht Cengiz Gümüsdere, ausgebildeter Kaufmann
                   für IT-Systemmanagement. Der Grund für die Gründung war einfach:
                   In den meisten Microsoft-Umgebungen im Mittelstand ist niemand
                   wirklich verantwortlich. Der IT-Dienstleister reagiert auf Tickets,

@@ -62,7 +62,7 @@ const organizationJsonLd = {
   email: "info@cloudoptima.de",
   telephone: "+4915751773759",
   priceRange: "€€€",
-  founder: { "@type": "Person", name: "Cengiz Gümüşdere" },
+  founder: { "@type": "Person", name: "Cengiz Gümüsdere" },
   address: {
     "@type": "PostalAddress",
     streetAddress: "Unter den Kastanien 15",
