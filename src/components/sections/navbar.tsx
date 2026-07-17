@@ -35,7 +35,7 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-2.5" aria-label="CloudOptima, zur Startseite">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-azure to-azure-deep font-display text-base font-bold text-void">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#3281CC] to-[#103B69] font-display text-base font-bold text-void">
             C
           </span>
           <span className="font-display text-lg font-semibold tracking-tight">
