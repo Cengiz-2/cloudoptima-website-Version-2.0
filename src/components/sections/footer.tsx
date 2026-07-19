@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { EASE, viewportOnce } from "@/lib/motion";
 import { site } from "@/lib/site";
 import { PartnerBadge } from "@/components/ui/partner-badge";
+import { LogoMark } from "@/components/ui/logo-mark";
 
 const letters = "CloudOptima".split("");
 
@@ -16,9 +17,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#3281CC] to-[#103B69] font-display text-base font-bold text-void">
-                C
-              </span>
+              <LogoMark className="h-8 w-8" />
               <span className="font-display text-lg font-semibold tracking-tight text-ink">
                 Cloud<span className="text-azure-bright">Optima</span>
               </span>
