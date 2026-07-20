@@ -7,6 +7,18 @@ const nextConfig = {
   images: { unoptimized: true },
   reactStrictMode: true,
   poweredByHeader: false,
+  // Feineres Tree-Shaking für die großen Icon- und Animations-Pakete: es landen
+  // nur die tatsächlich genutzten Module im Bundle statt der kompletten
+  // Barrel-Exports. Rein technisch, ändert nichts an Optik oder Verhalten.
+  experimental: {
+    optimizePackageImports: ["framer-motion", "lucide-react"],
+  },
+  // Entfernt console.*-Aufrufe im Produktions-Build (kleinere Bundles),
+  // behält aber console.error für echte Fehler.
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false,
+  },
 };
 
 export default nextConfig;
