@@ -3,7 +3,8 @@ import type { Config } from "tailwindcss";
 /**
  * CloudOptima Design System
  * - Farben ausschließlich über Tokens (keine rohen Hex-Werte in Komponenten)
- * - Typo-Skala: Major Third (1.25), Basis 16px
+ * - Typo-Skala: angehobene Lesegrößen (Body 18px, Kleintext min. 14px),
+ *   Display-Größen moderat vergrößert, damit Headlines mobil nicht brechen
  * - Spacing: Tailwind 4px-Skala, Layout-Rhythmus in 8px-Schritten
  */
 const config: Config = {
@@ -35,17 +36,17 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
-        xs: ["0.75rem", { lineHeight: "1.35" }],
-        sm: ["0.875rem", { lineHeight: "1.5" }],
-        base: ["1rem", { lineHeight: "1.65" }],
-        lg: ["1.125rem", { lineHeight: "1.6" }],
-        xl: ["1.25rem", { lineHeight: "1.5" }],
-        "2xl": ["1.5625rem", { lineHeight: "1.3" }],
-        "3xl": ["1.953rem", { lineHeight: "1.25", letterSpacing: "-0.01em" }],
-        "4xl": ["2.441rem", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        "5xl": ["3.052rem", { lineHeight: "1.08", letterSpacing: "-0.025em" }],
-        "6xl": ["3.815rem", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
-        "7xl": ["4.768rem", { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        xs: ["0.875rem", { lineHeight: "1.4" }],
+        sm: ["1rem", { lineHeight: "1.55" }],
+        base: ["1.125rem", { lineHeight: "1.65" }],
+        lg: ["1.25rem", { lineHeight: "1.6" }],
+        xl: ["1.375rem", { lineHeight: "1.5" }],
+        "2xl": ["1.75rem", { lineHeight: "1.3" }],
+        "3xl": ["2.125rem", { lineHeight: "1.25", letterSpacing: "-0.01em" }],
+        "4xl": ["2.625rem", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
+        "5xl": ["3.25rem", { lineHeight: "1.08", letterSpacing: "-0.025em" }],
+        "6xl": ["4rem", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        "7xl": ["4.9375rem", { lineHeight: "1.02", letterSpacing: "-0.03em" }],
       },
       boxShadow: {
         glow: "0 0 48px -12px rgb(var(--azure) / 0.5)",

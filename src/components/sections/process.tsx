@@ -12,8 +12,8 @@ export function Process() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
           chapter={chapters[3]}
-          title="Von Blindflug zu Betrieb in fünf Schritten"
-          lead="Onboarding heißt bei uns: kontrollierter Zugriff über GDAP statt Global Admin, Härtung vor Deployment und am Ende ein Bericht, den Sie vorzeigen können."
+          title="So kommen Sie dahin: Onboarding in fünf Schritten"
+          lead="Vom Kickoff bis zum ersten Monatsreport: kontrollierter Zugriff über GDAP statt Global Admin, Härtung vor dem Rollout und am Ende ein Bericht, den Sie vorzeigen können."
         />
 
         <div className="relative mt-16">
@@ -48,7 +48,7 @@ export function Process() {
                   {step.nr}
                 </span>
                 <div className="lg:mt-5">
-                  <p className="font-mono text-[0.65rem] uppercase tracking-wider text-ink-mute">
+                  <p className="font-mono text-xs uppercase tracking-wider text-ink-mute">
                     {step.duration}
                   </p>
                   <h3 className="mt-1.5 font-display text-lg font-semibold text-ink">

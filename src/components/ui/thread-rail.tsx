@@ -58,7 +58,7 @@ export function ThreadRail() {
                     : "border-ink-mute/50 bg-raised group-hover:border-azure/60"
                 )}
               />
-              <span className="pointer-events-none absolute right-6 whitespace-nowrap rounded-md border border-line bg-void px-2 py-1 font-mono text-[0.62rem] uppercase tracking-widest text-ink-soft opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <span className="pointer-events-none absolute right-6 whitespace-nowrap rounded-md border border-line bg-void px-2 py-1 font-mono text-xs uppercase tracking-widest text-ink-soft opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                 {c.nr} · {c.label}
               </span>
             </a>

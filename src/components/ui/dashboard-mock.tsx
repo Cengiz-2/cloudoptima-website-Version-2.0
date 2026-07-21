@@ -42,7 +42,7 @@ export function DashboardMock() {
           { label: "Lizenzkosten", value: "−12 %", tone: "text-azure-bright" },
         ].map((kpi) => (
           <div key={kpi.label} className="rounded-xl border border-line bg-raised/50 p-4">
-            <p className="font-mono text-[0.65rem] uppercase tracking-wider text-ink-mute">
+            <p className="font-mono text-xs uppercase tracking-wider text-ink-mute">
               {kpi.label}
             </p>
             <p className={`mt-1.5 font-display text-2xl font-semibold tabular-nums ${kpi.tone}`}>
@@ -54,7 +54,7 @@ export function DashboardMock() {
 
       <div className="mt-3 grid gap-3 md:grid-cols-5">
         <div className="rounded-xl border border-line bg-raised/50 p-4 md:col-span-3">
-          <p className="font-mono text-[0.65rem] uppercase tracking-wider text-ink-mute">
+          <p className="font-mono text-xs uppercase tracking-wider text-ink-mute">
             Secure Score, letzte 12 Monate
           </p>
           <motion.div
@@ -80,7 +80,7 @@ export function DashboardMock() {
           </motion.div>
         </div>
         <div className="rounded-xl border border-line bg-raised/50 p-4 md:col-span-2">
-          <p className="font-mono text-[0.65rem] uppercase tracking-wider text-ink-mute">
+          <p className="font-mono text-xs uppercase tracking-wider text-ink-mute">
             Maßnahmen diesen Monat
           </p>
           <ul className="mt-4 space-y-3">

@@ -10,6 +10,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { Reveal } from "@/components/ui/reveal";
 import { ParticleButton } from "@/components/ui/particle-button";
+import { StackMarquee } from "@/components/ui/stack-marquee";
 
 const outOfScope = [
   "Endanwender-Helpdesk („mein Drucker druckt nicht“)",
@@ -64,6 +65,8 @@ export function LeistungenContent() {
               );
             })}
           </motion.div>
+
+          <StackMarquee className="mt-16" />
         </div>
       </section>
 

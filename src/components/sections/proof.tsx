@@ -69,7 +69,7 @@ export function Proof() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 border-t border-line pt-4 font-mono text-[0.65rem] uppercase tracking-wider text-ink-mute">
+                <p className="mt-6 border-t border-line pt-4 font-mono text-xs uppercase tracking-wider text-ink-mute">
                   Erstellt von CloudOptima · Quartals-Review am 14.07.
                 </p>
               </div>

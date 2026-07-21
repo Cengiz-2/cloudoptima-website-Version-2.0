@@ -83,7 +83,7 @@ export function DeadlineCountdown() {
           <p className="font-display text-4xl font-semibold tabular-nums text-amber md:text-5xl">
             {value}
           </p>
-          <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-widest text-ink-mute">
+          <p className="mt-1 font-mono text-xs uppercase tracking-widest text-ink-mute">
             {label}
           </p>
         </div>
