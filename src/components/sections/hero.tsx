@@ -10,14 +10,9 @@ import { ProgressiveBlur } from "@/components/ui/sparkles";
 import { AetherFlow } from "@/components/ui/aether-flow";
 import { DeadlineChip } from "@/components/ui/countdown";
 import { PartnerBadge } from "@/components/ui/partner-badge";
-import { ContainerScroll } from "@/components/ui/container-scroll";
-import { DashboardMock } from "@/components/ui/dashboard-mock";
 import { Hero3DLazy } from "@/components/ui/hero-3d-lazy";
 
-/**
- * Hero: Aether-Flow-Partikelnetz (21st.dev), Lichtflächen, 3D-Kern (Desktop)
- * und der Aceternity Container-Scroll, der den Monatsreport aufrichtet.
- */
+/** Hero: Aether-Flow-Partikelnetz (21st.dev), Lichtflächen und 3D-Kern (Desktop). */
 export function Hero() {
   return (
     <section id="start" className="noise relative overflow-hidden pb-24 pt-36 md:pb-32 md:pt-44">
@@ -82,21 +77,6 @@ export function Hero() {
           Managed Services für M365 & Azure · 10 bis 300 Mitarbeitende
         </motion.p>
       </motion.div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <ContainerScroll>
-          <DashboardMock />
-        </ContainerScroll>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 text-center font-mono text-xs uppercase tracking-[0.18em] text-ink-mute"
-        >
-          Ihr Monatsreport. Jeden Monat. Ohne Nachfragen.
-        </motion.p>
-      </div>
 
       <ProgressiveBlur />
     </section>
