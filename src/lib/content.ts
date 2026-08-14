@@ -113,7 +113,13 @@ export type BlogPost = {
   slug: string;
   title: string;
   description: string;
+  /** Veröffentlichungsdatum, wird im Artikel angezeigt. Bleibt unverändert. */
   date: string;
+  /**
+   * Datum der letzten inhaltlichen Überarbeitung, nur für die Sitemap.
+   * Setzen, wenn ein bereits veröffentlichter Artikel angefasst wird.
+   */
+  updated?: string;
   readingTime: string;
   tag: string;
   blocks: Array<
@@ -130,6 +136,7 @@ export const blogPosts: BlogPost[] = [
     description:
       "Die Frist für die BSI-Registrierung ist abgelaufen. Wer betroffen ist, warum die Pflicht trotzdem bleibt und was Sie jetzt nachholen sollten.",
     date: "2026-06-28",
+    updated: "2026-08-14",
     readingTime: "5 Min.",
     tag: "NIS2",
     blocks: [
