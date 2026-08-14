@@ -28,6 +28,21 @@ export const metadata: Metadata = {
   title: "CloudOptima | Managed Services für Microsoft 365 & Azure",
   description:
     "CloudOptima betreibt, sichert und dokumentiert Ihre Microsoft-Umgebung. Fester Monatspreis, fester Ansprechpartner, NIS2 im Blick.",
+  // Favicon bewusst NICHT ueber die Next.js-Dateikonvention (src/app/icon.png,
+  // src/app/apple-icon.png). Die erzeugt gehashte URLs wie
+  // /icon.png?a55b7a5ea0360899, die sich bei jedem Build aendern. Google
+  // verlangt eine stabile Favicon-URL und faellt sonst auf den generierten
+  // Buchstaben zurueck. src/app/favicon.ico bleibt, weil Next die ohne Hash
+  // unter /favicon.ico ausliefert; alles Weitere kommt stabil aus /public.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon-480.png", sizes: "480x480", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   // Kein og/twitter title+description hier: Next füllt sie pro Seite aus dem
   // jeweiligen title/description, damit geteilte Unterseiten ihren eigenen
   // Titel zeigen statt des generischen Startseiten-Titels.
