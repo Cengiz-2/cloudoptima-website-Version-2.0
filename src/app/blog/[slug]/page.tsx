@@ -15,7 +15,9 @@ export function generateMetadata({ params }: Props): Metadata {
   const post = blogPosts.find((p) => p.slug === params.slug);
   if (!post) return { title: "Artikel nicht gefunden | CloudOptima" };
   return {
-    title: `${post.title} | CloudOptima Blog`,
+    // Ohne Suffix, sonst werden die Titel in der Google-Suche abgeschnitten
+    // (waren mit "| CloudOptima Blog" bei 81 bis 82 Zeichen).
+    title: post.title,
     description: post.description,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
