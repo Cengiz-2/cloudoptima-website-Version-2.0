@@ -126,16 +126,16 @@ export type BlogPost = {
 export const blogPosts: BlogPost[] = [
   {
     slug: "nis2-nachfrist-2026",
-    title: "NIS2-Nachfrist bis 31.07.2026: Was Sie jetzt noch schaffen können",
+    title: "NIS2-Registrierung verpasst: Was jetzt zu tun ist",
     description:
-      "Die BSI-Nachfrist für die Registrierung läuft ab. Wer betroffen ist, was bis Ende Juli passieren muss und was danach realistisch bleibt.",
+      "Die Frist für die BSI-Registrierung ist abgelaufen. Wer betroffen ist, warum die Pflicht trotzdem bleibt und was Sie jetzt nachholen sollten.",
     date: "2026-06-28",
     readingTime: "5 Min.",
     tag: "NIS2",
     blocks: [
       {
         type: "p",
-        text: "Das NIS2-Umsetzungsgesetz ist seit Dezember 2025 in Kraft. Für die Registrierung beim BSI läuft aktuell die Nachfrist, sie endet am 31. Juli 2026. Danach drohen bei Verstößen Bußgelder, die je nach Einrichtung bis in den siebenstelligen Bereich gehen.",
+        text: "Das NIS2-Umsetzungsgesetz ist seit Dezember 2025 in Kraft. Die gesetzliche Frist für die Registrierung beim BSI endete am 6. März 2026. Danach hat das BSI verspätete Registrierungen noch bis Ende Juli 2026 geduldet, auch diese Kulanzfrist ist vorbei. Die Pflicht selbst bleibt bestehen: Eine fehlende Registrierung ist nach § 65 BSIG ein eigener Bußgeldtatbestand, auch ohne Sicherheitsvorfall.",
       },
       { type: "h2", text: "Wer überhaupt betroffen ist" },
       {
@@ -146,7 +146,7 @@ export const blogPosts: BlogPost[] = [
         type: "p",
         text: "Dazu kommt die Lieferkette: Wer Zulieferer oder Dienstleister eines NIS2-pflichtigen Unternehmens ist, fällt oft nicht selbst unter das Gesetz, muss seinen Auftraggebern aber Sicherheitsnachweise liefern. Paragraf 30 BSIG verpflichtet die Betroffenen, ihre Lieferkette abzusichern. Diese Anforderungen landen gerade reihenweise als Fragebögen in den Postfächern von Zulieferern.",
       },
-      { type: "h2", text: "Was bis zum 31. Juli passieren muss" },
+      { type: "h2", text: "Was jetzt passieren muss" },
       {
         type: "ul",
         items: [
@@ -156,7 +156,7 @@ export const blogPosts: BlogPost[] = [
           "Bestandsaufnahme der IT-Umgebung als Basis für alles Weitere",
         ],
       },
-      { type: "h2", text: "Und wenn die Frist nicht mehr reicht?" },
+      { type: "h2", text: "Und wenn die Frist schon vorbei ist?" },
       {
         type: "p",
         text: "Dann gilt: Registrierung nachholen und die technische Umsetzung sauber aufsetzen statt in Panik Einzelmaßnahmen zu kaufen. Eine Microsoft-Umgebung lässt sich in 6 bis 12 Wochen auf ein nachweisbares Niveau bringen, inklusive Dokumentation. Wer nachweisen kann, dass die Umsetzung läuft, steht bei einer Prüfung deutlich besser da als jemand ohne Plan.",

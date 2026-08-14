@@ -32,7 +32,7 @@ const duties = [
   {
     icon: Building2,
     title: "Registrierung beim BSI",
-    text: "Betroffene Einrichtungen müssen sich selbst registrieren. Genau dafür läuft die Nachfrist bis 31.07.2026.",
+    text: "Betroffene Einrichtungen müssen sich selbst registrieren. Die Frist ist abgelaufen, die Pflicht bleibt. Eine fehlende Registrierung ist nach § 65 BSIG eigenständig bußgeldbewehrt.",
   },
   {
     icon: Gauge,
@@ -66,8 +66,8 @@ export function Nis2Content() {
     <main>
       <PageHero
         kicker="NIS2"
-        title="NIS2 ist kein IT-Projekt. Es ist eine Chefsache mit Frist."
-        lead="Seit Dezember 2025 ist das Umsetzungsgesetz in Kraft. Die BSI-Nachfrist für die Registrierung endet am 31.07.2026. So kommen Sie mit einer Microsoft-Umgebung sauber durch."
+        title="NIS2 ist kein IT-Projekt. Es ist Chefsache, und die Frist ist durch."
+        lead="Seit Dezember 2025 ist das Umsetzungsgesetz in Kraft. Die gesetzliche Registrierungsfrist lief am 06.03.2026 ab, die Kulanzfrist des BSI Ende Juli 2026. Wer bis heute nicht registriert ist, riskiert ein Bußgeld auch ohne Sicherheitsvorfall. So kommen Sie mit einer Microsoft-Umgebung sauber durch."
       >
         <DeadlineCountdown />
       </PageHero>

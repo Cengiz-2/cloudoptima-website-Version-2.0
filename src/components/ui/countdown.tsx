@@ -19,7 +19,7 @@ export function DeadlineChip() {
 
   const label =
     days === null
-      ? "BSI-Nachfrist NIS2: 31.07.2026"
+      ? "NIS2-Registrierung: Frist abgelaufen"
       : days > 0
         ? `NIS2-Registrierung: Nachfrist endet in ${days} Tagen`
         : "Die NIS2-Nachfrist ist abgelaufen. Jetzt handeln.";
@@ -36,7 +36,13 @@ export function DeadlineChip() {
 
 /** Großer Countdown für die NIS2-Seite, mit Fallback nach Ablauf */
 export function DeadlineCountdown() {
-  const [t, setT] = useState<{ d: number; h: number; m: number } | null>(null);
+  /**
+   * Ist die Frist bereits vorbei, rendert schon der Server die Ablauf-Meldung.
+   * Sonst sähen Crawler und Nutzer ohne JS einen leeren Countdown ("– Tage").
+   */
+  const [t, setT] = useState<{ d: number; h: number; m: number } | null>(() =>
+    new Date(site.nis2Deadline).getTime() <= Date.now() ? { d: 0, h: 0, m: 0 } : null
+  );
 
   useEffect(() => {
     const calc = () => {
