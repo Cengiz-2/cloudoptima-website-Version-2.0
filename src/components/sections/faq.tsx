@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "Wie schnell reagieren Sie bei Störungen?",
-    a: "Das Monitoring läuft rund um die Uhr automatisiert und erzeugt bei Störungen sofort ein Ticket. Bearbeitet wird montags bis freitags von 9 bis 17 Uhr. Wer eine Rufbereitschaft für Totalausfälle braucht, bucht das 24/7 On-Call Add-on mit 30 Minuten Reaktionszeit bei P1.",
+    a: "Das Monitoring läuft rund um die Uhr automatisiert und erzeugt bei Störungen sofort ein Ticket. Bearbeitet wird montags bis freitags von 9 bis 17 Uhr. Wer eine Rufbereitschaft für Totalausfälle braucht, bucht das 24/7 On-Call Add-on mit einem Reaktionszeit-Zielwert unter 15 Minuten bei P1.",
   },
   {
     q: "Wie läuft das Onboarding ab?",
@@ -92,7 +92,7 @@ export function Faq() {
         <Reveal className="text-center">
           <p className="kicker">FAQ</p>
           <h2 className="mt-4 font-display text-4xl font-semibold text-ink md:text-5xl">
-            Die Fragen, die uns jeder stellt
+            Die häufigsten Fragen
           </h2>
         </Reveal>
 

@@ -61,7 +61,7 @@ export const addons = [
   {
     name: "Backup & Restore",
     price: "ab 390 €/Monat",
-    note: "Tägliche Sicherung für Exchange, SharePoint, OneDrive und Teams-Dateien. 1 Jahr Aufbewahrung.",
+    note: "Tägliche Sicherung für Exchange, SharePoint, OneDrive und Teams-Dateien. 1 Jahr Aufbewahrung, 2 Restore-Fälle pro Monat inklusive.",
   },
   {
     name: "Purview Governance",
@@ -71,7 +71,7 @@ export const addons = [
   {
     name: "24/7 On-Call (P1)",
     price: "ab 1.990 €/Monat",
-    note: "Rufbereitschaft bei Totalausfall oder aktivem Sicherheitsvorfall. Reaktion in 30 Minuten.",
+    note: "Rufbereitschaft bei Totalausfall oder aktivem Sicherheitsvorfall. Reaktionszeit-Zielwert unter 15 Minuten.",
   },
   {
     name: "Copilot Readiness",
