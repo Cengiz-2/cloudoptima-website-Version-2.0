@@ -143,6 +143,7 @@ export function OpsLoop() {
             So sieht ein ganz normaler Monat im Managed Service aus: Lücken werden
             geschlossen, bevor sie jemand ausnutzt, Patches laufen nachts, Kosten
             werden aufgeräumt und am Ende steht alles nachvollziehbar im Report.
+            Beispielhafter Ablauf, keine Kundendaten.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             {["24/7 Monitoring", "9 Kernleistungen", "Feste Pauschale"].map((badge) => (

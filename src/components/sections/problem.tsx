@@ -121,7 +121,7 @@ export function Problem() {
             after={<Panel tone="after" rows={afterRows} />}
           />
           <p className="mt-4 text-center font-mono text-xs uppercase tracking-[0.18em] text-ink-mute">
-            So finden wir die meisten Umgebungen vor. Das ist keine Übertreibung.
+            Eine typische Ausgangslage im Mittelstand. Die Zahlen sind Beispielwerte.
           </p>
         </Reveal>
       </div>
