@@ -77,7 +77,7 @@ export function Footer() {
                 href="/leistungen"
                 className="block text-sm text-ink-soft transition-colors hover:text-ink"
               >
-                Leistungsbedingungen
+                Leistungsumfang
               </Link>
             </div>
           </div>

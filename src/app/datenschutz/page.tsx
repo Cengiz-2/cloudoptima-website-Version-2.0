@@ -22,7 +22,13 @@ export default function DatenschutzPage() {
             erforderlichen Umfang. Rechtsgrundlage ist die DSGVO. Betroffene haben
             Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung,
             Datenübertragbarkeit und Widerspruch (Art. 15–22 DSGVO). Beschwerden
-            richten Sie an die zuständige Aufsichtsbehörde (z. B. Hessisches LDI).
+            richten Sie an die zuständige Aufsichtsbehörde: Der Hessische
+            Beauftragte für Datenschutz und Informationsfreiheit (HBDI),
+            Wiesbaden.
+          </p>
+          <p className="mt-3">
+            Das Angebot von CloudOptima richtet sich ausschließlich an Unternehmer
+            im Sinne des § 14 BGB, nicht an Verbraucher.
           </p>
           <p className="mt-3">
             Diese Website setzt keine Tracking-Cookies und keine Analyse-Tools ein.
@@ -108,7 +114,26 @@ export default function DatenschutzPage() {
             vollständig in Ihrem Browser, Ihre Antworten werden erst übertragen,
             wenn Sie das Ergebnis aktiv absenden.
           </p>
+          <p className="mt-3">
+            Die Bereitstellung Ihrer Daten im Anfrageformular ist weder gesetzlich
+            noch vertraglich vorgeschrieben. Ohne Name und E-Mail-Adresse können
+            wir Ihre Anfrage allerdings nicht beantworten.
+          </p>
+          <p className="mt-3">
+            Soweit eine Verarbeitung auf Ihrer Einwilligung beruht, können Sie
+            diese jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3
+            DSGVO). Die Rechtmäßigkeit der bis dahin erfolgten Verarbeitung bleibt
+            unberührt.
+          </p>
+          <p className="mt-3">
+            Eine automatisierte Entscheidungsfindung einschließlich Profiling nach
+            Art. 22 DSGVO findet nicht statt.
+          </p>
         </section>
+
+        <p className="border-t border-line pt-6 text-xs text-ink-mute">
+          Stand dieser Datenschutzerklärung: August 2026.
+        </p>
       </div>
     </main>
   );

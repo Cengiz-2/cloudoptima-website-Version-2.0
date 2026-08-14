@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, CircleCheck, Loader2, TriangleAlert } from "lucide-react";
 import { site } from "@/lib/site";
@@ -169,6 +170,16 @@ export function ContactForm() {
           Antwort innerhalb von 48 Stunden.
         </p>
       </div>
+      <p className="text-xs leading-relaxed text-ink-mute md:col-span-2">
+        Ihre Angaben werden ausschließlich zur Bearbeitung dieser Anfrage
+        verarbeitet (Art. 6 Abs. 1 lit. b bzw. f DSGVO) und nicht an Dritte
+        weitergegeben. Die Übermittlung erfolgt über unseren Dienstleister
+        Formspree. Einzelheiten und Ihre Rechte:{" "}
+        <Link href="/datenschutz" className="underline underline-offset-4 hover:text-ink-soft">
+          Datenschutzerklärung
+        </Link>
+        .
+      </p>
       {status === "error" && (
         <p className="flex items-center gap-2 text-sm text-danger md:col-span-2">
           <TriangleAlert className="h-4 w-4 shrink-0" />

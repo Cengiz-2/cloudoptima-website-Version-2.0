@@ -152,7 +152,8 @@ export function Pricing() {
             danach monatlich kündbar. Incidents und die laufende Benutzerverwaltung
             (Joiner/Mover/Leaver) sind im Preis enthalten, Requests wie Projekte oder
             Bulk-Änderungen rechnen wir mit 125 €/Std. ab. 2 Managed Devices pro
-            Mitarbeitendem inklusive.
+            Mitarbeitendem inklusive, jedes weitere 6 € netto/Monat. Unser Angebot
+            richtet sich ausschließlich an Unternehmer im Sinne des § 14 BGB.
           </p>
         </Reveal>
       </div>
