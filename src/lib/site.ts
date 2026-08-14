@@ -61,7 +61,7 @@ export const addons = [
   {
     name: "Backup & Restore",
     price: "ab 390 €/Monat",
-    note: "Tägliche Sicherung für Exchange, SharePoint, OneDrive und Teams. 1 Jahr Aufbewahrung.",
+    note: "Tägliche Sicherung für Exchange, SharePoint, OneDrive und Teams-Dateien. 1 Jahr Aufbewahrung.",
   },
   {
     name: "Purview Governance",
